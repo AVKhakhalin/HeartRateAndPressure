@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="date_container_margin_start">8dp</dimen>
     <dimen name="date_text_text_size">18sp</dimen>
     <dimen name="date_text_padding_top">8dp</dimen>
     <dimen name="date_text_padding_bottom">8dp</dimen>
@@ -30,4 +29,5 @@
     <dimen name="nights_heart_image_height">20dp</dimen>
     <dimen name="days_heart_image_width">20dp</dimen>
     <dimen name="days_heart_image_height">20dp</dimen>
+    <dimen name="date_text_margin_start">8dp</dimen>
 </resources>
