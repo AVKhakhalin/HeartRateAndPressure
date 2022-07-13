@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="date_container_margin_start">8dp</dimen>
+    <dimen name="date_text_text_size">18sp</dimen>
+    <dimen name="date_text_padding_top">8dp</dimen>
+    <dimen name="date_text_padding_bottom">8dp</dimen>
+    <dimen name="nights_results_container_margin_start">8dp</dimen>
+    <dimen name="nights_pressure_top_text_size">28sp</dimen>
+    <dimen name="nights_pressure_top_margin_end">20dp</dimen>
+    <dimen name="nights_slash_text_size">28sp</dimen>
+    <dimen name="nights_pressure_bottom_text_size">28sp</dimen>
+    <dimen name="nights_pressure_bottom_margin_start">20dp</dimen>
+    <dimen name="nights_heart_rate_text_size">28sp</dimen>
+    <dimen name="nights_heart_rate_margin_end">30dp</dimen>
+    <dimen name="nights_heart_image_margin_end">20dp</dimen>
+    <dimen name="item_list_container_elevation">20dp</dimen>
+    <dimen name="date_container_top_line_height">2dp</dimen>
+    <dimen name="date_container_bottom_line_height">2dp</dimen>
+    <dimen name="nights_results_container_bottom_line_height">2dp</dimen>
+    <dimen name="days_pressure_top_text_size">28sp</dimen>
+    <dimen name="days_pressure_top_margin_end">20dp</dimen>
+    <dimen name="days_slash_text_size">28sp</dimen>
+    <dimen name="days_pressure_bottom_text_size">28sp</dimen>
+    <dimen name="days_pressure_bottom_margin_start">20dp</dimen>
+    <dimen name="days_heart_image_margin_end">20dp</dimen>
+    <dimen name="days_heart_rate_text_size">28sp</dimen>
+    <dimen name="days_heart_rate_margin_end">30dp</dimen>
+    <dimen name="days_results_container_bottom_line_height">2dp</dimen>
+    <dimen name="nights_heart_image_width">20dp</dimen>
+    <dimen name="nights_heart_image_height">20dp</dimen>
+    <dimen name="days_heart_image_width">20dp</dimen>
+    <dimen name="days_heart_image_height">20dp</dimen>
+</resources>
