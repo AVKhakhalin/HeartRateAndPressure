@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android/Projects/HeartRateAndPressure/app/src/main/res/drawable/ic_heart.xml" value="0.3055" />
+        <entry key="..\:/Android/Projects/HeartRateAndPressure/app/src/main/res/drawable/ic_heart_red.xml" value="0.255" />
         <entry key="..\:/Android/Projects/HeartRateAndPressure/app/src/main/res/drawable/white_green_gradient.xml" value="0.315" />
         <entry key="..\:/Android/Projects/HeartRateAndPressure/app/src/main/res/drawable/white_yellow_gradient.xml" value="0.315" />
+        <entry key="..\:/Android/Projects/HeartRateAndPressure/app/src/main/res/layout/activity_main.xml" value="0.3529411863703219" />
         <entry key="..\:/Android/Projects/HeartRateAndPressure/app/src/main/res/layout/item_list_pressure_hr.xml" value="0.5294117795554828" />
       </map>
     </option>
