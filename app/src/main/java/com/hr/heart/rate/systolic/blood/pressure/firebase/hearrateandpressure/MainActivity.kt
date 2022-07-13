@@ -78,7 +78,7 @@ class MainActivity: AppCompatActivity() {
 //            }
 //        //endregion
 //
-//        setContentView(binding.root)
+        setContentView(binding.root)
     }
 
     // Функция - слушатель нажатий по FAB
