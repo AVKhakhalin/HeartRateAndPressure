@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/item_list_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:elevation="@dimen/item_list_container_elevation"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/date_container_top_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/date_container_top_line_height"
+        android:background="@color/dark_gray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/date_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/date_container_margin_start"
+        android:background="@color/light_gray"
+        app:layout_constraintTop_toBottomOf="@id/date_container_top_line"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/date_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/date_text_text_size"
+            android:textColor="@color/gray"
+            android:paddingTop="@dimen/date_text_padding_top"
+            android:paddingBottom="@dimen/date_text_padding_bottom"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/date_text_tools_text"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/date_container_bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/date_container_bottom_line_height"
+        android:background="@color/dark_gray"
+        app:layout_constraintTop_toBottomOf="@id/date_container"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/nights_results_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/nights_results_container_margin_start"
+        android:background="@drawable/white_yellow_gradient"
+        app:layout_constraintTop_toBottomOf="@id/date_container_bottom_line"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/nights_time"
+            style="@style/TextView_style"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="@string/nights_time_tools_text"/>
+
+        <TextView
+            android:id="@+id/nights_pressure_top"
+            style="@style/TextView_style"
+            android:textSize="@dimen/nights_pressure_top_text_size"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/nights_pressure_top_margin_end"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/nights_slash"
+            tools:text="@string/nights_pressure_top_tools_text"/>
+
+        <TextView
+            android:id="@+id/nights_slash"
+            style="@style/TextView_style"
+            android:textSize="@dimen/nights_slash_text_size"
+            android:text="@string/nights_slash_text"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/nights_pressure_bottom"
+            style="@style/TextView_style"
+            android:textSize="@dimen/nights_pressure_bottom_text_size"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/nights_pressure_bottom_margin_start"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/nights_slash"
+            tools:text="@string/nights_pressure_bottom_tools_text"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/nights_heart_image"
+            android:layout_width="@dimen/nights_heart_image_width"
+            android:layout_height="@dimen/nights_heart_image_height"
+            android:src="@drawable/ic_heart"
+            android:layout_marginEnd="@dimen/nights_heart_image_margin_end"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/nights_heart_rate"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/nights_heart_rate"
+            style="@style/TextView_style"
+            android:textSize="@dimen/nights_heart_rate_text_size"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/nights_heart_rate_margin_end"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/nights_heart_rate_tools_text"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/nights_results_container_bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nights_results_container_bottom_line_height"
+        android:background="@color/dark_gray"
+        app:layout_constraintTop_toBottomOf="@id/nights_results_container"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/days_results_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/white_green_gradient"
+        app:layout_constraintTop_toBottomOf="@id/nights_results_container_bottom_line"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/days_time"
+            style="@style/TextView_style"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="@string/days_time_tools_text"/>
+
+        <TextView
+            android:id="@+id/days_pressure_top"
+            style="@style/TextView_style"
+            android:textSize="@dimen/days_pressure_top_text_size"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/days_pressure_top_margin_end"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/days_slash"
+            tools:text="@string/days_pressure_top_tools_text"/>
+
+        <TextView
+            android:id="@+id/days_slash"
+            style="@style/TextView_style"
+            android:textSize="@dimen/days_slash_text_size"
+            android:text="@string/days_slash_text"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/days_pressure_bottom"
+            style="@style/TextView_style"
+            android:textSize="@dimen/days_pressure_bottom_text_size"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/days_pressure_bottom_margin_start"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/days_slash"
+            tools:text="@string/days_pressure_bottom_tools_text"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/days_heart_image"
+            android:layout_width="@dimen/days_heart_image_width"
+            android:layout_height="@dimen/days_heart_image_height"
+            android:src="@drawable/ic_heart"
+            android:layout_marginEnd="@dimen/days_heart_image_margin_end"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/days_heart_rate"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/days_heart_rate"
+            style="@style/TextView_style"
+            android:textSize="@dimen/days_heart_rate_text_size"
+            android:textColor="@color/gray"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/days_heart_rate_margin_end"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/days_heart_rate_tools_text"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/days_results_container_bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/days_results_container_bottom_line_height"
+        android:background="@color/dark_gray"
+        app:layout_constraintTop_toBottomOf="@id/days_results_container"
+        app:layout_constraintStart_toStartOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

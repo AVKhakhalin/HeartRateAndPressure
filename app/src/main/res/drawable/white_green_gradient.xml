@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:state_enabled="true">
+        <ripple
+            android:color="@color/white">
+            <item>
+                <shape android:shape="rectangle">
+                    <gradient
+                        android:angle="180"
+                        android:useLevel="true"
+                        android:startColor="@color/white"
+                        android:centerColor="@color/green"
+                        android:endColor="@color/white"/>
+                    <size
+                        android:width="60dp"
+                        android:height="30dp" />
+                </shape>
+            </item>
+        </ripple>
+    </item>
+</selector>

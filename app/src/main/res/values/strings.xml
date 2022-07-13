@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">HeartRateAndPressure</string>
+    <string name="date_text_tools_text">25 октября</string>
+    <string name="nights_time_tools_text">23:54</string>
+    <string name="nights_pressure_top_tools_text">137</string>
+    <string name="nights_slash_text">/</string>
+    <string name="nights_pressure_bottom_tools_text">71</string>
+    <string name="nights_heart_rate_tools_text">59</string>
+    <string name="days_time_tools_text">8:01</string>
+    <string name="days_pressure_top_tools_text">126</string>
+    <string name="days_slash_text">/</string>
+    <string name="days_pressure_bottom_tools_text">67</string>
+    <string name="days_heart_rate_tools_text">49</string>
 </resources>
