@@ -2,11 +2,7 @@ package com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.v
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -18,7 +14,6 @@ import org.koin.java.KoinJavaComponent.getKoin
 import java.util.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.R
 import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.databinding.DialogfragmendAddNewDataBinding
 import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.model.AppState
 import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.model.HealthData
@@ -39,9 +34,6 @@ class MainActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // !!! Убрать перед отправкой
-//        addDataToFirebase()
 
         // Подключение Binding
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -128,7 +120,7 @@ class MainActivity: AppCompatActivity() {
             lateinit var healthData: HealthData
             if (dialogView.addNewDataTimeField.text.toString().getHour().isAmTime()) {
                 healthData = HealthData(
-                    simpleData = "${date.getDay()}/${date.getMonth()}/${date.getYear()}",
+                    simpleDate = "${date.getDay()}/${date.getMonth()}/${date.getYear()}",
                     daysTime = "${time.getHour()}:${time.getMinute()}",
                     daysPressureTop = if (pressureTop.isNotEmpty()) pressureTop.toInt()
                                       else EMPTY_INT_CODE,
@@ -138,7 +130,7 @@ class MainActivity: AppCompatActivity() {
                                     else EMPTY_INT_CODE)
             } else {
                 healthData = HealthData(
-                    simpleData = "${date.getDay()}/${date.getMonth()}/${date.getYear()}",
+                    simpleDate = "${date.getDay()}/${date.getMonth()}/${date.getYear()}",
                     nightsTime = "${time.getHour()}:${time.getMinute()}",
                     nightsPressureTop = if (pressureTop.isNotEmpty()) pressureTop.toInt()
                                       else EMPTY_INT_CODE,

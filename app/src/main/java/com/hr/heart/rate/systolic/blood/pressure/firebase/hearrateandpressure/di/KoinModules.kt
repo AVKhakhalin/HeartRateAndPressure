@@ -2,6 +2,7 @@ package com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.d
 
 import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.repository.FirestoreRepo
 import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.repository.FirestoreRepoImpl
+import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.repository.Settings
 import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.utils.MAIN_ACTIVITY_SCOPE
 import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.utils.resources.ResourcesProvider
 import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.utils.resources.ResourcesProviderImpl
@@ -12,7 +13,6 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val application = module {
-
      // Вспомогательные классы:
     // Получение доступа к ресурсам
     single<ResourcesProvider> { ResourcesProviderImpl(androidContext()) }
@@ -28,5 +28,8 @@ val screens = module {
 }
 
 val repository = module {
+    // Удалённое хранилище всех данных пользователя
     single<FirestoreRepo> { FirestoreRepoImpl() }
+    // Локальное хранилище настроек программы и временных данных
+    single<Settings> { Settings() }
 }
