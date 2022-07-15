@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class HealthData(
+    val simpleData: String,
     val nightTime: String,
     val nightsPressureTop: Int,
     val nightsPressureBottom: Int,
@@ -11,5 +12,5 @@ data class HealthData(
     val daysTime: String,
     val daysPressureTop: Int,
     val daysPressureBottom: Int,
-    val daysHeartRate: Int
+    val daysHeartRate: Int,
 )
