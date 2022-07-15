@@ -5,18 +5,19 @@ plugins {
     id 'kotlinx-serialization'
     // Подключение плагина для работы с аннотациями (нужно для Room)
     id 'kotlin-kapt'
+    // Подключение парселизации
+    id 'kotlin-parcelize'
 }
 
 android {
-    compileSdk 32
+    compileSdk Config.compile_sdk
 
     defaultConfig {
-        applicationId "com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure"
-        minSdk 21
-        targetSdk 32
-        versionCode 1
-        versionName "1.0"
-
+        applicationId Config.application_id
+        minSdkVersion Config.min_sdk
+        targetSdkVersion Config.target_sdk
+        versionCode Release.version_code
+        versionName Release.version_name
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -26,9 +27,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility Config.java_version
+        targetCompatibility Config.java_version
     }
     kotlinOptions {
         jvmTarget = '1.8'
@@ -41,16 +43,74 @@ android {
 }
 
 dependencies {
-
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.firebase:firebase-firestore:24.1.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
-    implementation "com.google.code.gson:gson:2.8.7"
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0"
+    //AndroidX
+    implementation AndroidX.appcompat
+    //Kotlin
+    implementation Kotlin.ktx
+    implementation Kotlin.jdk7
+    implementation Kotlin.coroutinescore
+    implementation Kotlin.coroutinesandroid
+    //Design
+    implementation Design.material
+    implementation Design.constrlayout
+    // Tests
+    // Core
+    testImplementation Tests.junit
+    androidTestImplementation Tests.ext // Нужно для работы AndroidJUnit4 в инструментальных-тестах
+    androidTestImplementation Tests.espressocore
+    implementation fileTree(dir: Tests.filetreedir, include: Tests.filetreeinclude)
+    testImplementation Tests.core
+    testImplementation Tests.coroutines
+    // Mockito
+    testImplementation Tests.mockitocore
+    testImplementation Tests.mockitoinline
+    testImplementation (Tests.mockitokotlin) {
+        exclude group: 'org.jetbrains.kotlin'
+        exclude group: 'org.mockito'
+    }
+    // Robolectric
+    testImplementation Tests.robolectric
+    testImplementation Tests.robolectriccore
+    testImplementation Tests.robolectricrunner
+    testImplementation Tests.ext // Нужно для работы AndroidJUnit4 в Unit-тестах
+    testImplementation Tests.robolectrictruth
+    testImplementation Tests.robolectricespressocore
+    testImplementation Tests.robolectricespressointents
+    // UI Automator
+    androidTestImplementation Tests.uiautomator
+    androidTestImplementation Tests.uiautomatorrules
+    // Fragment
+    debugImplementation Tests.fragment
+    // RecyclerView
+    debugImplementation Tests.recyclerView
+    // Lifecycle
+    implementation Lifecycle.extensions
+    // LiveData
+    implementation Lifecycle.ktx
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation Lifecycle.runtimektx
+    implementation Lifecycle.process
+    implementation Lifecycle.java8
+    // OkHTTP
+    implementation OkHTTP.runtime
+    // Coroutines
+    implementation Coroutines.android
+    // Koin
+    //Koin core features
+    implementation Koin.core
+    //Koin main features for Android (Scope,ViewModel ...)
+    implementation Koin.android
+    //Koin Java Compatibility
+    implementation Koin.compat
+    // For Retrofit 2 coroutines
+    implementation Koin.retrofitcoroutines
+    // Koin for Tests
+    testImplementation Koin.testsandroidx
+    testImplementation Koin.testsio
+    // Firebase
+    implementation Firebase.firestore
+    // GSON
+    implementation GSON.gson
+    // Сериализация
+    implementation Serialization.serialize
 }

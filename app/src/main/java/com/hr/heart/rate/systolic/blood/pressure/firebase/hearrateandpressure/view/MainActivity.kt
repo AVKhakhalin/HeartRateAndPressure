@@ -1,82 +1,93 @@
 package com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.view
 
 import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.databinding.ActivityMainBinding
 import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.model.HealthData
 import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.utils.*
+import org.koin.core.qualifier.named
+import org.koin.core.scope.Scope
+import org.koin.java.KoinJavaComponent.getKoin
 import java.text.SimpleDateFormat
 import java.util.*
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.model.AppState
+import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.view.adapter.MainActivityRecyclerAdapter
 
 
 class MainActivity: AppCompatActivity() {
     /** Исходные данные */ //region
     // Binding
     private lateinit var binding: ActivityMainBinding
+    // ViewModel
+    private val mainActivityScope: Scope = getKoin().getOrCreateScope(
+        MAIN_ACTIVITY_SCOPE, named(MAIN_ACTIVITY_SCOPE)
+    )
+    private lateinit var viewModel: MainViewModel
     //endregion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // !!! Убрать перед отправкой
+//        addDataToFirebase()
+
         // Подключение Binding
         binding = ActivityMainBinding.inflate(layoutInflater)
+        // Инициализация ViewModel
+        initViewModel()
         // Инициализация FAB
         onClickFab()
 
-        // Initialise FirebaseFirestore
-        val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+        setContentView(binding.root)
+    }
 
-        //region WRITE DATA
-        var healthData: HealthData = HealthData(
-            "23:54", 137, 71, 59,
-            "8:01", 126, 67, 49
-        )
+    // Инициализация ViewModel
+    private fun initViewModel() {
+        // Создание Scope для MainActivity
+        val viewModel: MainViewModel by mainActivityScope.inject()
+        this.viewModel = viewModel
+        // Подписка на ViewModel
+        this.viewModel.subscribe().observe(this) { renderData(it) }
+        // Получение данных
+        viewModel.getData()
+    }
 
-        var data = hashMapOf(
-            "data" to Date(),
-            "healthData" to healthData
-        )
-
-        // Add a new document with a generated ID
-        db.collection("HeartRateAndPressure")
-            .add(data)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error adding document", e)
-            }
-        //endregion
-
-
-        //region READ DATA
-        db.collection("HeartRateAndPressure")
-            .orderBy(DATA_KEY, Query.Direction.DESCENDING)
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.d(TAG, "Получено: ${document.id} => ${document.data}")
-                    Log.d("mylogs", "${document.data["data"]}")
-
-                    Log.d("mylogs", SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).
-                        format(document.data.convertFirebaseDateStringToCalendar().time))
-                    document.data.convertFirebaseHealthDataToHealthData()?.let {
-                        Log.d("mylogs", it.daysTime)
-                    }
+    private fun renderData(appState: AppState) {
+        when (appState) {
+            is AppState.Success -> {
+                // Изменение внешнего вида
+                binding.heartRatePressureDataList.visibility = View.VISIBLE
+                binding.progressbar.visibility = View.INVISIBLE
+                // Установка списка актёров
+                appState.healthDataList?.let { healthDataList ->
+                    val recyclerView: RecyclerView = binding.heartRatePressureDataList
+                    recyclerView.layoutManager = LinearLayoutManager(
+                        this, LinearLayoutManager.VERTICAL, false)
+                    recyclerView.adapter = MainActivityRecyclerAdapter(healthDataList)
                 }
             }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents.", exception)
+            is AppState.Loading -> {
+                // Изменение внешнего вида
+                binding.heartRatePressureDataList.visibility = View.INVISIBLE
+                binding.progressbar.visibility = View.VISIBLE
             }
-        //endregion
-
-        setContentView(binding.root)
+            is AppState.Error -> {
+                Toast.makeText(this@MainActivity,
+                    appState.error.message, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     // Функция - слушатель нажатий по FAB
@@ -88,5 +99,11 @@ class MainActivity: AppCompatActivity() {
                     "Нажали на кнопку FAB", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun onDestroy() {
+        // Удаление скоупа для данной активити
+        mainActivityScope.close()
+        super.onDestroy()
     }
 }
