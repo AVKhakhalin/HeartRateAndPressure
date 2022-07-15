@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class HealthData(
-    val simpleData: String = EMPTY_STRING_CODE,
+    val simpleDate: String = EMPTY_STRING_CODE,
     val nightsTime: String = EMPTY_STRING_CODE,
     val nightsPressureTop: Int = EMPTY_INT_CODE,
     val nightsPressureBottom: Int = EMPTY_INT_CODE,

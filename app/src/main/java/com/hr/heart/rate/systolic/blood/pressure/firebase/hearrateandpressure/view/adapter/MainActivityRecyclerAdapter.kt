@@ -32,7 +32,7 @@ class MainActivityRecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.binding.dateText.text = healthDateList[position].simpleData
+        holder.binding.dateText.text = healthDateList[position].simpleDate
         if ((healthDateList[position].nightsTime.isNotEmpty()) &&
             (healthDateList[position].nightsPressureTop != EMPTY_INT_CODE) &&
             (healthDateList[position].nightsPressureBottom != EMPTY_INT_CODE) &&
