@@ -4,8 +4,8 @@ import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.model.HealthData
-import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.abs
 
 fun Map<String, Any>.convertFirebaseDateStringToCalendar(): Calendar {
     val calendar: Calendar = Calendar.getInstance()
@@ -29,11 +29,50 @@ fun Map<String, Any>.convertFirebaseHealthDataToHealthData(): HealthData? {
     return Gson().fromJson(stringForJSON, HealthData::class.java)
 }
 
-fun getDate(milliSeconds: Long, dateFormat: String): String {
-    val formatter: SimpleDateFormat = SimpleDateFormat(dateFormat)
-    val calendar: Calendar = Calendar.getInstance()
-    calendar.timeInMillis = milliSeconds
-    return formatter.format(calendar.time)
+// Определение времени Am (true) или Pm (false)
+fun Int.isAmTime(): Boolean {
+    return (this >= 0) && (this < 12)
+}
+
+// Получение часа из строки пользователя
+fun String.getHour(): Int {
+    val time: Array<String> =
+        this.split(".", ":", "/", "|", "\\", " ").toTypedArray()
+    var hours: Int = if (time[HOUR_INDEX].isNotEmpty()) abs(time[HOUR_INDEX].toInt()) else 0
+    val minutes: Int = if (time[MINUTE_INDEX].isNotEmpty()) abs(time[MINUTE_INDEX].toInt()) else 0
+    if (minutes > 59) {
+        hours++
+    }
+    if (hours > 23) hours %= 24
+    return hours
+}
+// Получение минут из строки пользователя
+fun String.getMinute(): Int {
+    val time: Array<String> =
+        this.split(".", ":", "/", "|", "\\", " ").toTypedArray()
+    var minutes: Int = if (time[MINUTE_INDEX].isNotEmpty()) abs(time[MINUTE_INDEX].toInt()) else 0
+    if (minutes > 59) {
+        minutes -= MINUTES_IN_HOUR
+    }
+    return minutes
+}
+// Получение дня из строки пользователя
+fun String.getDay(): Int {
+    val time: Array<String> =
+        this.split(".", ":", "/", "|", "\\", " ").toTypedArray()
+    return if (time[DAY_INDEX].isNotEmpty()) time[DAY_INDEX].toInt() else 0
+}
+// Получение месяца из строки пользователя
+fun String.getMonth(): Int {
+    val time: Array<String> =
+        this.split(".", ":", "/", "|", "\\", " ").toTypedArray()
+    return if (time[MONTH_INDEX].isNotEmpty()) time[MONTH_INDEX].toInt() else 0
+}
+// Получение года из строки пользователя
+fun String.getYear(): Int {
+    val time: Array<String> =
+        this.split(".", ":", "/", "|", "\\", " ").toTypedArray()
+    return if (time[YEAR_INDEX].isNotEmpty()) time[YEAR_INDEX].toInt() else 0
 }
 
 fun addDataToFirebase() {
@@ -42,7 +81,7 @@ fun addDataToFirebase() {
 
     //region WRITE NEW DATA
     var healthData: HealthData = HealthData(
-        "23.10.2022",
+        "23/10/2022",
         "22:06", 150, 83, 55,
         "7:51", 129, 79, 53
     )
@@ -65,7 +104,7 @@ fun addDataToFirebase() {
 
     //region WRITE NEW DATA
     healthData = HealthData(
-        "24.10.2022",
+        "24/10/2022",
         "22:07", 141, 64, 63,
         "6:39", 127, 73, 58
     )
@@ -88,7 +127,7 @@ fun addDataToFirebase() {
 
     //region WRITE NEW DATA
     healthData = HealthData(
-        "25.10.2022",
+        "25/10/2022",
         "23:54", 137, 71, 59,
         "8:01", 126, 67, 49
     )

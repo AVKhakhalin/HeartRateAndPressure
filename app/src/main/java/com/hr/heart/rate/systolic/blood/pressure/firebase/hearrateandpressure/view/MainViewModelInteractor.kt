@@ -1,5 +1,6 @@
 package com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.view
 
+import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.model.HealthData
 import com.hr.heart.rate.systolic.blood.pressure.firebase.hearrateandpressure.repository.FirestoreRepo
 import org.koin.java.KoinJavaComponent.getKoin
 
@@ -12,7 +13,7 @@ class MainViewModelInteractor {
         fireStoreRepoImpl.getDataList(viewModel)
     }
 
-    suspend fun saveHealthData() {
-
+    suspend fun saveHealthData(healthData: HealthData, viewModel: MainViewModel) {
+        fireStoreRepoImpl.saveData(healthData, viewModel)
     }
 }

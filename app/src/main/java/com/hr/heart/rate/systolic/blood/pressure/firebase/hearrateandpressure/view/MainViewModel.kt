@@ -28,7 +28,7 @@ class MainViewModel: BaseViewModel<AppState>() {
 
     override fun saveData(healthData: HealthData) {
         viewModelCoroutineScope.launch {
-            interactor.saveHealthData()
+            interactor.saveHealthData(healthData, this@MainViewModel)
         }
     }
 
