@@ -11,4 +11,12 @@
     <string name="days_slash_text">/</string>
     <string name="days_pressure_bottom_tools_text">67</string>
     <string name="days_heart_rate_tools_text">49</string>
+    <string name="add_new_data_titile_text">Введите новые данные</string>
+    <string name="add_new_data_save_button_text">Сохранить</string>
+    <string name="add_new_data_cancel_button_text">Отменить</string>
+    <string name="add_new_data_date_title_text">Введите дату,\nДД/ММ/ГГГГ</string>
+    <string name="add_new_data_time_title_text">Введите время,\nЧЧ:ММ</string>
+    <string name="add_new_data_pressure_top_title_text">Введите систолическое\nартериальное давление\n(АД), мм.рт.ст.</string>
+    <string name="add_new_data_pressure_bottom_title_text">Введите диастолическое\nартериальное давление\n(АД), мм.рт.ст.</string>
+    <string name="add_new_data_heart_rate_title_text">Введите частоту\nсердечных сокращений\n(ЧСС), уд./мин</string>
 </resources>
